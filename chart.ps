@@ -1,0 +1,172 @@
+%!
+(a4)
+/paperx 8.5    72 mul def
+/papery 11     72 mul def
+% /paperx 210 10 mul 254 div 72 mul def
+% /papery 197 10 mul 254 div 72 mul def
+
+gsave
+  /Times-Regular findfont 10 scalefont setfont
+  (burmisha@gmail.com) 300 75 moveto show 
+  (Mikhail Burmistrov) 300 65 moveto show
+grestore
+
+% /order 5 def
+
+% /thick 25 def
+% /START F def
+% /F {
+  
+% } def
+/+ { angle rotate } bind def
+/- { angle neg rotate } bind def
+
+
+/hilbert{
+  save
+  3 dict begin
+  /saveobj exch def
+  /s exch def
+  /n exch def
+  n 1 gt {
+    0 s 3 div translate 
+    90 neg rotate
+    newpath
+      0 0 moveto
+      s 2 mul 3 div neg 0 rlineto
+    stroke
+    n 1 sub s 3 div hilbert 
+    
+    s 2 mul 3 div neg s 2 mul 3 div translate 
+    90 neg rotate
+    n 1 sub s 3 div hilbert 
+    newpath
+      s 3 div 0 moveto
+      s 3 div 0 rlineto
+    stroke
+    newpath
+      0 0 moveto
+      s neg 3 div 0 rlineto
+    stroke
+    
+    s 3 div neg s 3 mul 3 div translate 
+    90 neg rotate
+    newpath
+      s 3 div 0 moveto
+      s 2 mul 3 div 0 rlineto
+    stroke
+    n 1 sub s 3 div hilbert 
+    }{
+    newpath
+      0 0 moveto
+      0 s rlineto
+      s 0 rlineto
+      0 s neg rlineto
+    stroke
+  } ifelse
+  saveobj
+  end
+  restore
+} bind def
+
+gsave
+  1 2 div setlinewidth
+  66 96 translate
+  5 120 hilbert
+% stroke
+grestore
+
+gsave
+  100 400 translate
+  /flower {1 10 div setlinewidth
+  /angle 1 def
+  /+ { angle rotate } bind def
+  /- { angle neg rotate } bind def
+  
+  1 1 360 {
+    /n exch def
+    newpath 
+    0 0 moveto
+    +
+    150 0 rlineto
+    stroke
+  } for} def
+  flower
+  200 0 translate
+  flower
+grestore
+
+gsave
+  100 400 translate
+  /flower {1 10 div setlinewidth
+  
+  /+ { angle rotate } bind def
+  /- { angle neg rotate } bind def
+  
+  1 1 360 {
+    /n exch def
+    newpath 
+    0 0 moveto
+    +
+    150 0 rlineto
+    stroke
+  } for} def
+  flower
+  200 0 translate
+  flower
+grestore
+
+gsave
+/Times-Regular findfont 10 scalefont setfont
+  paperx 2 div papery 2 div translate 
+  /side 40 def
+  % /display {dup 3 1 roll 10 exch exp mul round
+  %         10 3 -1 roll exp div} def
+  /str 10 string def
+  % /dp 1 def % display precision 
+  /hs side 2 div def
+  -3 1 3 {
+    /i exch def
+    -3 1 3 {
+        /j exch def
+          gsave
+          newpath
+          i 90 mul j 120 mul translate
+          hs neg hs neg moveto
+          0 side  rlineto
+          side 0 rlineto
+          0 side neg rlineto
+          side neg 0 rlineto
+          0 0 0 setrgbcolor
+          fill
+          closepath
+          0 0 0 setrgbcolor
+          5 setlinewidth
+          stroke
+
+          i str cvs  -2 hs 1 add moveto show 
+          j str cvs  hs 1 add -3 moveto show 
+
+          1 1 1 setrgbcolor
+          0.1 setlinewidth
+            
+          newpath 
+          1 1 200 {
+            /n exch def
+            0 0 moveto
+            n ln 67 mul rotate
+            15 0 rlineto
+            n ln 67 mul neg rotate
+          } for
+          stroke
+          % (-30) 0 0 moveto show 
+  
+          grestore
+    } for
+  } for
+
+grestore
+
+showpage
+
+
