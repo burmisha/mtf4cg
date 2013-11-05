@@ -38,3 +38,13 @@ nosetests.xml
 # PostScript
 *.pdf
 
+# images
+*.CR2
+*.JPG
+*.jpg
+*.jpeg
+*.png
+
+# LibRaw
+LibRaw*
+
